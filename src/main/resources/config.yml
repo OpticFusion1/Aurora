@@ -22,4 +22,4 @@ disabled-worlds:
 # Setting this to false will prevent Aurora from creating light when spawning ANY particles
 # Setting this to true will let Aurora choose depending on "particle.enableLighting" in each particle config
 # It can be useful to disable lighting if you're experiencing performance issues
-enable-lighting: true
+enable-lighting: false
