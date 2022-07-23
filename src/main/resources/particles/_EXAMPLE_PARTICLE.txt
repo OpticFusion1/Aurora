@@ -12,7 +12,7 @@
   "spawning": {
     "biomes": [
       "PLAINS",
-      "PRESENT: SHORE"
+      "PRESENT=SHORE"
     ],
     "spawnDistance": 10.0,
     "randMultiplier": 0.5,

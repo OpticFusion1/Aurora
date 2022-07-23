@@ -29,7 +29,7 @@ public class ParticleFile {
 
             if (biomes != null && biomes.length != 0) {
                 for (String biome : biomes) {
-                    if (biome.toUpperCase().startsWith("AURORA=")) {
+                    if (biome.toUpperCase().startsWith("PRESENT=")) {
                         String present = biome.split("=")[1];
                         if (presentsFile.getList(present) != null && !presentsFile.getList(present).isEmpty()) {
                             for (String presentBiome : presentsFile.getList(present)) {

@@ -4,7 +4,10 @@ import com.github.ipecter.rtu.biomelib.RTUBiomeLib;
 import com.zenya.aurora.file.ParticleFile;
 import com.zenya.aurora.util.Logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 public class ParticleFileCache {
 
@@ -19,10 +22,7 @@ public class ParticleFileCache {
             String[] biomes = particleFile.getSpawning().getBiomes();
             if (biomes.length == 1 && biomes[0].equals("ALL")) {
                 for (String biome : RTUBiomeLib.getInterface().getBiomesName()) {
-                    if (!Arrays.asList("overworld", "realistic").contains(namespaced(biome))){
-                        registerBiome(biome, particleFile);
-                    }
-
+                    registerBiome(biome, particleFile);
                 }
                 return;
             }
@@ -52,9 +52,11 @@ public class ParticleFileCache {
         String biomeName = namespaced(biome);
         particleCacheMap.computeIfAbsent(biomeName, k -> new ArrayList<>()).add(particleFile);
     }
+
     private String namespaced(String name) {
         return name.contains(":") ? name.toLowerCase() : "minecraft:" + name.toLowerCase();
     }
+
     public void unregisterFile(String name) {
         particleCacheMap.remove(name);
     }
