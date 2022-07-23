@@ -1,5 +1,6 @@
 package com.zenya.aurora.command;
 
+import com.github.ipecter.rtu.biomelib.RTUBiomeLib;
 import com.zenya.aurora.Aurora;
 import com.zenya.aurora.event.ParticleUpdateEvent;
 import com.zenya.aurora.util.ext.LightAPI;
@@ -14,7 +15,6 @@ import com.zenya.aurora.util.ChunkContainer;
 import com.zenya.aurora.worldguard.AmbientParticlesFlag;
 import com.zenya.aurora.worldguard.WGManager;
 import org.bukkit.Bukkit;
-import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -100,8 +100,7 @@ public class AuroraCommand implements CommandExecutor {
                         //If enabled, check if active in region/biome
                         if (particleFile.isEnabled() && sender instanceof Player) {
                             Player player = (Player) sender;
-                            Biome biome = player.getLocation().getBlock().getBiome();
-                            String biomeName = biome.toString();
+                            String biomeName = RTUBiomeLib.getInterface().getBiomeName(player.getLocation()).toUpperCase();
 
                             //WG support
                             if (WGManager.getWorldGuard() != null) {

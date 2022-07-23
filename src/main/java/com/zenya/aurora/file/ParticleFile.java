@@ -29,21 +29,23 @@ public class ParticleFile {
 
             if (biomes != null && biomes.length != 0) {
                 for (String biome : biomes) {
-                    if (biome.toUpperCase().startsWith("PRESENT:")) {
-                        String present = biome.substring(8).replaceAll(" ", "");
+                    if (biome.toUpperCase().startsWith("AURORA=")) {
+                        String present = biome.split("=")[1];
                         if (presentsFile.getList(present) != null && !presentsFile.getList(present).isEmpty()) {
                             for (String presentBiome : presentsFile.getList(present)) {
-                                finalBiomes.add(presentBiome);
+                                finalBiomes.add(namespaced(presentBiome));
                             }
                         }
                     } else {
-                        finalBiomes.add(biome);
+                        finalBiomes.add(namespaced(biome));
                     }
                 }
             }
             return finalBiomes.toArray(new String[finalBiomes.size()]);
         }
-
+        private String namespaced(String name) {
+            return name.contains(":") ? name.toLowerCase() : "minecraft:" + name.toLowerCase();
+        }
         public double getSpawnDistance() {
             return spawnDistance;
         }

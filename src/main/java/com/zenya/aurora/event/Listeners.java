@@ -1,5 +1,6 @@
 package com.zenya.aurora.event;
 
+import com.github.ipecter.rtu.biomelib.RTUBiomeLib;
 import com.zenya.aurora.Aurora;
 import com.zenya.aurora.file.ParticleFile;
 import com.zenya.aurora.storage.ParticleFileCache;
@@ -86,8 +87,7 @@ public class Listeners implements Listener {
     public void onParticleUpdateEvent(ParticleUpdateEvent e) {
         //Init variables
         Player player = e.getPlayer();
-        Biome biome = player.getLocation().getBlock().getBiome();
-        String biomeName = biome.toString();
+        String biomeName = RTUBiomeLib.getInterface().getBiomeName(player.getLocation()).toLowerCase();
 
         //Remove old tasks
         ParticleManager.INSTANCE.unregisterTasks(player, false);

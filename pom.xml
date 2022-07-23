@@ -1,8 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"xsi:schemaLocation="http://maven.apache.org/POM/4.0.0http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.zenya.aurora</groupId>
     <artifactId>Aurora</artifactId>
-    <version>4.2</version>
+    <version>4.4</version>
     <packaging>jar</packaging>
 
     <repositories>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1.18.2-R0.1-SNAPSHOT</version>
+            <version>1.19-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -122,12 +122,21 @@
         <dependency>
             <groupId>com.github.BeYkeRYkt</groupId>
             <artifactId>LightAPI</artifactId>
-            <version>5.2.0-Bukkit</version>
+            <version>5.3.0-Bukkit</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ipecter</groupId>
+            <artifactId>RTUBiomeLib</artifactId>
+            <version>1.2.0</version>
+            <scope>system</scope>
+            <systemPath>${webapp.libs}/RTUBiomeLib-1.2.0-all.jar</systemPath>
         </dependency>
     </dependencies>
 
     <properties>
+        <webapp.libs>${basedir}/libs</webapp.libs>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>

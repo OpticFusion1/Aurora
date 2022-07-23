@@ -3,7 +3,8 @@ description: Illuminate the night with breathtaking ambient particle effects
 version: ${project.version}
 author: Optic_Fusion1
 main: com.zenya.aurora.Aurora
-api-version: 1.18
+api-version: 1.19
+depend: [ RTUBiomeLib ]
 softdepend: [WorldGuard, LightAPI]
 
 commands:

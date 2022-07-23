@@ -1,13 +1,10 @@
 package com.zenya.aurora.storage;
 
+import com.github.ipecter.rtu.biomelib.RTUBiomeLib;
 import com.zenya.aurora.file.ParticleFile;
 import com.zenya.aurora.util.Logger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-import org.bukkit.block.Biome;
+import java.util.*;
 
 public class ParticleFileCache {
 
@@ -21,13 +18,16 @@ public class ParticleFileCache {
             }
             String[] biomes = particleFile.getSpawning().getBiomes();
             if (biomes.length == 1 && biomes[0].equals("ALL")) {
-                for (Biome biome : Biome.values()) {
-                    registerBiome(biome.toString(), particleFile);
+                for (String biome : RTUBiomeLib.getInterface().getBiomesName()) {
+                    if (!Arrays.asList("overworld", "realistic").contains(namespaced(biome))){
+                        registerBiome(biome, particleFile);
+                    }
+
                 }
                 return;
             }
             for (String biome : particleFile.getSpawning().getBiomes()) {
-                registerBiome(biome.toUpperCase(), particleFile);
+                registerBiome(biome, particleFile);
             }
         }
     }
@@ -49,9 +49,12 @@ public class ParticleFileCache {
     }
 
     public void registerClass(String biome, ParticleFile particleFile) {
-        particleCacheMap.computeIfAbsent(biome, k -> new ArrayList<>()).add(particleFile);
+        String biomeName = namespaced(biome);
+        particleCacheMap.computeIfAbsent(biomeName, k -> new ArrayList<>()).add(particleFile);
     }
-
+    private String namespaced(String name) {
+        return name.contains(":") ? name.toLowerCase() : "minecraft:" + name.toLowerCase();
+    }
     public void unregisterFile(String name) {
         particleCacheMap.remove(name);
     }

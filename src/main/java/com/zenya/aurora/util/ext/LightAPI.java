@@ -30,7 +30,7 @@ public class LightAPI {
      * @param location Location to remove lighting from
      * @param lightFlags Type of lighting to remove
      * @param async Whether light updating should be asynchronous
-     * @see #setLight(Location, int, int, boolean)
+     * @see #setLight(Location, int, int, boolean, boolean)
      */
     public static void clearLight(Location location, int lightFlags, boolean async, boolean force) {
         setLight(location, lightFlags, 0, async, force);
